@@ -5,7 +5,7 @@
 
 int main()
 {
-    VectorN* v1 = createVectorN((int[]){1, 2, 3, 4, 5, 6, 7}, 7);
+    VectorN* v1 = createVectorN((int[]){1, 2, 3, 4, 5, 6, 7}, 0);
 
     vectorNPrint(v1);
 

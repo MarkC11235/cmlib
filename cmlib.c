@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <assert.h>
 #include "cmlib.h"
 
 //TESTER
@@ -8,6 +9,11 @@ void cmlibHello()
 {
     printf("Hello from cmlib!\n");
 }
+//--------------------------------------------------
+
+//Helper Functions
+//--------------------------------------------------
+#define ARRAY_SIZE(array) (sizeof(array) / sizeof(array[0]))
 //--------------------------------------------------
 
 //VECTOR2
@@ -46,12 +52,15 @@ void vector2Print(Vector2* v)
 //--------------------------------------------------
 VectorN* createVectorN(int* data, int size)
 {
+    assert(data != NULL);
+    assert(size > 0);
+    assert(ARRAY_SIZE(data) == size);
+
     VectorN* result = malloc(sizeof(VectorN));
     result->data = data;
     result->size = size;
     return result;
 }
-
 
 void vectorNPrint(VectorN* v)
 {
