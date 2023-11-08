@@ -11,12 +11,15 @@ void cmlibHello()
 }
 //--------------------------------------------------
 
-//Helper Functions
+//Definitions
 //--------------------------------------------------
-#define ARRAY_SIZE(array) (sizeof(array) / sizeof(array[0]))
+#define ARRAY_LENGTH(x) (sizeof(x) / sizeof((x)[0]))
+
+#define OUTPUT_ARRAY_SPACING 5
 //--------------------------------------------------
 
 //VECTOR2
+//Possibly add in a result vector to the inputs so the only malloc is by the createVector function called by the user
 //--------------------------------------------------
 Vector2* createVector2(int x, int y)
 {
@@ -74,5 +77,76 @@ void vectorNPrint(VectorN* v)
         }
     }
     printf(")\n");
+}
+//--------------------------------------------------
+
+//Matrix
+//--------------------------------------------------
+Matrix* createMatrix(int* data, int rows, int cols)
+{
+    assert(rows > 0);
+    assert(cols > 0);
+    //When sending in a pointer, the array size marco will not work
+    //This is becuase it just gets the size of the pointer, not the array
+    //Right now, just trust the user to send in the correct size
+    //assert(ARRAY_SIZE(data) == rows * cols);
+
+    Matrix* result = malloc(sizeof(Matrix));
+    result->data = data;
+    result->rows = rows;
+    result->cols = cols;
+    return result;
+}
+
+
+void matrixAdd(Matrix* a, Matrix* b, Matrix* res)
+{
+    assert(a->rows == b->rows);
+    assert(a->cols == b->cols);
+    assert(res->rows == a->rows && res->cols == a->cols);
+    //have rows in outer loop becuase C uses row major order, so looping through each row in order is faster
+    for(int i = 0; i < a->rows * a->cols; i++){
+        res->data[i] = a->data[i] + b->data[i];
+    }
+}
+
+void matrixSub(Matrix* a, Matrix* b, Matrix* res)
+{
+    assert(a->rows == b->rows);
+    assert(a->cols == b->cols);
+    assert(res->rows == a->rows && res->cols == a->cols);
+    //have rows in outer loop becuase C uses row major order, so looping through each row in order is faster
+    for(int i = 0; i < a->rows * a->cols; i++){
+        res->data[i] = a->data[i] - b->data[i];
+    }
+}
+
+void matrixMul(Matrix* a, Matrix* b, Matrix* res){
+    assert(a->cols == b->rows);
+    assert(res->rows == a->rows && res->cols == b->cols);  
+
+    //TODO
+    // for(int i = 0; i < a->rows; i++){
+    //     for(int j = 0; j < a->)
+    // }
+}
+
+void matrixPrint(Matrix* m)
+{
+    for(int i = 0; i < m->rows; i++)
+    {
+        printf("|");
+        for(int j = 0; j < m->cols; j++)
+        {
+            printf("%*d", OUTPUT_ARRAY_SPACING, m->data[i * m->cols + j]); // The %*d looks at the 6 in the printf function and makes sure the output takes at least that much space
+            if(j < m->cols - 1)
+            {
+                printf(", ");
+            }
+        }
+        printf("|\n");
+    }
+
+    printf("\n");
 }
 //--------------------------------------------------
