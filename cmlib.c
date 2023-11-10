@@ -125,10 +125,18 @@ void matrixMul(Matrix* a, Matrix* b, Matrix* res){
     assert(a->cols == b->rows);
     assert(res->rows == a->rows && res->cols == b->cols);  
 
-    //TODO
-    // for(int i = 0; i < a->rows; i++){
-    //     for(int j = 0; j < a->)
-    // }
+    for(int i = 0; i < a->rows; i++){
+        for(int j = 0; j < b->cols; j++){
+            int sum = 0;
+            //printf("i : %d, j: %d\n", i, j);
+            for(int k = 0; k < a->cols; k++){
+                //printf("a : %d, b: %d, k: %d\n", a->data[i*a->cols + k], b->data[k*b->cols + j], k);
+                sum += a->data[i*a->cols + k] * b->data[k*b->cols + j];
+            }
+            //printf("i : %d, j: %d, sum: %d\n", i, j, sum);
+            res->data[i * a->rows + j] = sum;
+        }
+    }
 }
 
 void matrixPrint(Matrix* m)
