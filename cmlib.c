@@ -98,6 +98,25 @@ Matrix* createMatrix(int* data, int rows, int cols)
     return result;
 }
 
+//Still have to send in data so that way the user is allocating it
+//send in data initialized with all zeros
+Matrix* createIdentityMatrix(int* data, int rows, int cols){
+    assert(rows > 0);
+    assert(cols > 0);
+
+    Matrix* result = malloc(sizeof(Matrix));
+    result->rows = rows;
+    result->cols = cols;
+
+    for(int i = 0; i < rows; i++){
+        data[i*cols + i] = 1;
+    }
+
+    result->data = data;
+
+    return result;
+}
+
 void matrixAdd(Matrix* a, Matrix* b, Matrix* res)
 {
     assert(a->rows == b->rows);
@@ -133,6 +152,18 @@ void matrixMul(Matrix* a, Matrix* b, Matrix* res){
             res->data[i*res->cols + j] = c;
         }
     }
+}
+
+void matrixInverse(Matrix* a, Matrix* res){
+
+}
+
+int matrixComp(Matrix* a, Matrix* b){
+    int total = 0;
+    for(int i = 0; i < a->cols*a->rows; i++){
+        total += a->data[i] - b->data[i];
+    }
+    return total;
 }
 
 void matrixPrint(Matrix* m)

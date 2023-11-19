@@ -50,11 +50,18 @@ typedef struct {
     int cols;
 } Matrix;
 
+//init matrix
 Matrix* createMatrix(int* data, int rows, int cols);
+Matrix* createIdentityMatrix(int* data, int rows, int cols);
+
+//Matrix operations
 void matrixAdd(Matrix* a, Matrix* b, Matrix* res);
 void matrixSub(Matrix* a, Matrix* b, Matrix* res);
 void matrixMul(Matrix* a, Matrix* b, Matrix* res);
 void matrixInverse(Matrix* a, Matrix* res);
 
+//Matrix functions
+//returns 0 if equal, total = a[i] - b[i] 
+int matrixComp(Matrix* a, Matrix* b);
 void matrixPrint(Matrix* m);
 //--------------------------------------------------
