@@ -124,6 +124,15 @@ void matrixMul(Matrix* a, Matrix* b, Matrix* res){
     assert(a->cols == b->rows);
     assert(res->rows == a->rows && res->cols == b->cols);  
 
+    for(int i = 0; i < a->rows; i++){
+        for(int j = 0; j < b->cols; j++){
+            int c = 0;
+            for(int k = 0; k < a->cols; k++){
+                c += a->data[i*a->cols + k] * b->data[k*b->cols + j];
+            }
+            res->data[i*res->cols + j] = c;
+        }
+    }
 }
 
 void matrixPrint(Matrix* m)
