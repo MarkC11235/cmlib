@@ -13,7 +13,7 @@ void cmlibHello()
 
 //Definitions
 //--------------------------------------------------
-#define ARRAY_LENGTH(x) (sizeof(x) / sizeof((x)[0]))
+#define ARRAY_LENGTH(x) (sizeof(x) / sizeof((x)[0])) // DOESN'T WORK WITH POINTERS
 
 #define OUTPUT_ARRAY_SPACING 5
 //--------------------------------------------------
@@ -98,7 +98,6 @@ Matrix* createMatrix(int* data, int rows, int cols)
     return result;
 }
 
-
 void matrixAdd(Matrix* a, Matrix* b, Matrix* res)
 {
     assert(a->rows == b->rows);
@@ -125,10 +124,6 @@ void matrixMul(Matrix* a, Matrix* b, Matrix* res){
     assert(a->cols == b->rows);
     assert(res->rows == a->rows && res->cols == b->cols);  
 
-    //TODO
-    // for(int i = 0; i < a->rows; i++){
-    //     for(int j = 0; j < a->)
-    // }
 }
 
 void matrixPrint(Matrix* m)

@@ -5,7 +5,7 @@ void cmlibHello();
 
 //Helper Functions/Macros
 //--------------------------------------------------
-#define ARRAY_SIZE(x) (sizeof(x) / sizeof((x)[0]))
+#define ARRAY_SIZE(x) (sizeof(x) / sizeof((x)[0])) // DOESN'T WORK WITH POINTERS
 //--------------------------------------------------
 
 //VECTOR2
