@@ -10,6 +10,11 @@ int main()
     Matrix* b = createMatrix(x, 2, 2);
     // matrixPrint(a);
     // matrixPrint(b);
+    int x[] = {1, 2, 3};
+    Matrix* a = createMatrix(x, 3, 1);
+    Matrix* b = createMatrix(x, 1, 3);
+    matrixPrint(a);
+    matrixPrint(b);
 
     //inits array with all zeros
     int res[4] = {0};
@@ -20,6 +25,8 @@ int main()
 
     //matrixSub(a, b, c);
     //matrixPrint(c);
+    matrixMul(a, b, c);
+    matrixPrint(c);
 
     return 0;
 }
